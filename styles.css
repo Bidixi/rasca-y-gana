@@ -54,6 +54,7 @@ h1 {
     background: url('assets/textura-dorado.png');
     background-size: cover;
     cursor: pointer;
+    transition: opacity 0.5s ease-in-out;
     border-radius: 10px;
 }
 

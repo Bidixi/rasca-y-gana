@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let descubiertos = 0;
     let seleccionados = [];
 
-    // 📌 Registrar entrada al rasca desde QR
+    // 📌 Registrar entrada desde el QR en Google Analytics
     gtag('event', 'qr_escaneado', {
         event_category: 'Interacciones',
         event_label: 'Usuario entró al Rasca y Gana'
@@ -59,112 +59,39 @@ document.addEventListener("DOMContentLoaded", function () {
         let img = document.createElement("img");
         img.src = item.imagen;
 
-        let canvas = document.createElement("canvas");
-        canvas.width = 160;
-        canvas.height = 160;
-        canvas.classList.add("capa-rasca");
+        let capa = document.createElement("div");
+        capa.classList.add("capa-rasca");
+        capa.dataset.index = index; // Guardar índice para Google Analytics
 
-        let ctx = canvas.getContext("2d");
-        let textura = new Image();
-        textura.src = 'assets/textura-dorado.png';
-
-        textura.onload = function () {
-            ctx.drawImage(textura, 0, 0, canvas.width, canvas.height);
-        };
-
-        div.appendChild(img);
-        div.appendChild(canvas);
-        rascaContainer.appendChild(div);
-
-        let isScratching = false;
-        const radio = 20;
-        let pixelesBorrados = 0;
-
-        // 📌 Registrar cuando el usuario empieza a rascar
-        function startScratching(event) {
-            isScratching = true;
-            scratch(event);
-
-            gtag('event', 'rasca_iniciado', {
-                event_category: 'Interacciones',
-                event_label: 'Usuario comenzó a rascar'
-            });
-        }
-
-        // Función para borrar la zona rascada
-        function scratch(event) {
-            if (!isScratching) return;
-
-            const rect = canvas.getBoundingClientRect();
-            const x = (event.clientX || event.touches[0].clientX) - rect.left;
-            const y = (event.clientY || event.touches[0].clientY) - rect.top;
-
-            ctx.globalCompositeOperation = "destination-out";
-            ctx.beginPath();
-            ctx.arc(x, y, radio, 0, Math.PI * 2);
-            ctx.fill();
-
-            // Contar los píxeles borrados
-            pixelesBorrados = calcularPixelesBorrados(ctx, canvas);
-
-            if (pixelesBorrados >= 0.85) {
-                canvas.remove(); // Descubrir completamente el recuadro
+        // 📌 Al hacer clic, se descubre el recuadro
+        capa.addEventListener("click", function () {
+            if (capa.style.opacity !== "0") {
+                capa.style.opacity = "0";
                 descubiertos++;
 
-                // 📌 Registrar descubrimiento del recuadro
+                // 📌 Registrar descubrimiento del recuadro en Google Analytics
                 gtag('event', 'recuadro_descubierto', {
                     event_category: 'Interacciones',
                     event_label: `Recuadro ${index + 1} descubierto`
                 });
 
-                // Si se han descubierto todos, mostrar el modal final
+                // Si se descubren todos los recuadros, mostrar el modal final
                 if (descubiertos === 9) {
-                    mostrarModal();
+                    setTimeout(mostrarModal, 1000);
                 }
             }
-        }
-
-        function stopScratching() {
-            isScratching = false;
-        }
-
-        function calcularPixelesBorrados(ctx, canvas) {
-            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-            let total = imageData.data.length / 4;
-            let transparentes = 0;
-
-            for (let i = 3; i < imageData.data.length; i += 4) {
-                if (imageData.data[i] === 0) {
-                    transparentes++;
-                }
-            }
-            return transparentes / total;
-        }
-
-        // Eventos para ratón y táctiles
-        canvas.addEventListener("mousedown", startScratching);
-        canvas.addEventListener("mousemove", scratch);
-        canvas.addEventListener("mouseup", stopScratching);
-        canvas.addEventListener("mouseleave", stopScratching);
-
-        canvas.addEventListener("touchstart", (event) => {
-            event.preventDefault();
-            startScratching(event);
         });
 
-        canvas.addEventListener("touchmove", (event) => {
-            event.preventDefault();
-            scratch(event);
-        });
-
-        canvas.addEventListener("touchend", stopScratching);
+        div.appendChild(img);
+        div.appendChild(capa);
+        rascaContainer.appendChild(div);
     });
 
     function mostrarModal() {
         modal.style.display = "flex";
         tituloModal.innerHTML = `¡Ohhh! No conseguiste el mínimo`;
 
-        // 📌 Registrar finalización del rasca
+        // 📌 Registrar que el usuario llegó al modal final
         gtag('event', 'rasca_completado', {
             event_category: 'Interacciones',
             event_label: 'Usuario completó el Rasca y Gana'

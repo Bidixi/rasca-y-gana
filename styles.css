@@ -1,0 +1,250 @@
+/* ==== GENERAL ==== */
+body {
+    background-color: #000;
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* ==== ENCABEZADO ==== */
+h1 {
+    margin-bottom: 30px;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+/* ==== CONTENEDOR DEL JUEGO ==== */
+#rasca-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 500px;
+    height: 500px;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+}
+
+.rasca {
+    width: 160px;
+    height: 160px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.rasca img {
+    width: 100%;
+    height: 100%;
+}
+
+.capa-rasca {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('assets/textura-dorado.png');
+    background-size: cover;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+/* ==== MODAL GENERAL ==== */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: black;
+    color: white;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    width: 50%;
+    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ==== MODAL DE INSTRUCCIONES ==== */
+#instrucciones-modal .modal-content {
+    background: #242424;
+    color: white;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    width: 40%;
+    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
+}
+
+#instrucciones-modal .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 2px solid white;
+}
+
+#instrucciones-modal h2 {
+    font-size: 36px;
+    margin: 0;
+    flex-grow: 1;
+    text-align: center;
+}
+
+#cerrar-instrucciones {
+    background-color: white;
+    color: black;
+    border-radius: 50%;
+    padding: 5px 12px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#instrucciones-modal p {
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+#instrucciones-modal img {
+    width: 100px;
+    height: auto;
+    margin-top: 20px;
+    border-radius: 15%;
+}
+
+/* ==== MODAL FINAL ==== */
+#modal .modal-content {
+    background: #242424;
+    color: white;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    width: 40%;
+    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
+}
+
+#modal h2 {
+    font-size: 36px;
+    margin: 0;
+    flex-grow: 1;
+    text-align: center;
+}
+
+#modal p {
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+#modal p span {
+    color: #FFD700; /* Amarillo */
+    font-weight: bold;
+}
+
+.modal-content-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px; /* Reducido el espacio */
+}
+
+.video-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    max-width: 220px; /* Ajuste para hacerlo más compacto */
+}
+
+.video-container video {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.spotify-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    max-width: 300px;
+}
+
+.spotify-container iframe {
+    height: 180px;
+    width: 100%;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 20px;
+    background: #385767;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background 0.3s ease-in-out;
+    font-size: 1rem;
+}
+
+.btn:hover {
+    background: #2c4657;
+}
+
+.fila-redes {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.fila-redes img {
+    width: 35px; /* Reducción de tamaño */
+    height: 35px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.fila-redes img:hover {
+    transform: scale(1.2);
+}
+
+@media (max-width: 600px) {
+    #modal .modal-content {
+        width: 85%;
+    }
+
+    .modal-content-container {
+        flex-direction: column;
+    }
+
+    .video-container,
+    .spotify-container {
+        max-width: 100%;
+    }
+
+    .fila-redes img {
+        width: 30px;
+        height: 30px;
+    }
+}

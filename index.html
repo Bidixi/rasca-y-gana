@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <title>Rasca y Gana</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Rasca para ganar</h1>
+
+        <!-- Contenedor del rasca y gana -->
+        <div id="rasca-container"></div>
+
+        <!-- Modal de Instrucciones -->
+        <div id="instrucciones-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>¿Cómo ganar?</h2>
+                    <span id="cerrar-instrucciones" class="cerrar">&times;</span>
+                </div>
+                <p>Es muy fácil, solamente tienes que encontrar al menos 5 imágenes como esta</p>
+                <img src="assets/logo-violeta.png" alt="Ejemplo de combinación ganadora">
+            </div>
+        </div>
+
+        <!-- Modal Final -->
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <h2 id="titulo-modal"></h2>
+                <p>Peroo para que no sea todo perder, un <span>descubrimiento musical</span>.</p>
+                
+                <div class="modal-content-container">
+                    <!-- Video de presentación -->
+                    <div class="video-container">
+                        <video controls autoplay muted>
+                            <source src="assets/video.mp4" type="video/mp4">
+                            Tu navegador no soporta el video.
+                        </video>
+                    </div>
+                    
+                    <!-- Spotify y botón de visita -->
+                    <div class="spotify-container">
+                        <iframe style="border-radius:12px"
+                                src="https://open.spotify.com/embed/artist/0VxwKDOfIkq37oYoXbcEvt?utm_source=generator"
+                                width="100%" height="152"
+                                frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+                        </iframe>
+                        <a id="web-btn" href="https://violetaoficial.com" target="_blank" class="btn">Visitar la Página Oficial</a>
+                        
+                        <!-- Plataformas de Música -->
+                        <div class="fila-redes">
+                            <a href="https://www.youtube.com/channel/UCFXhWdTDz3gWsArFp1mG_fQ" target="_blank">
+                                <img src="assets/youtube.ico" alt="YouTube">
+                            </a>
+                            <a href="https://music.apple.com/es/artist/violeta/1718315694" target="_blank">
+                                <img src="assets/apple-music.ico" alt="Apple Music">
+                            </a>
+                            <a href="https://music.amazon.es/artists/B0CNY8PJN1/violeta-h%C3%B3dar" target="_blank">
+                                <img src="assets/amazon-music.ico" alt="Amazon Music">
+                            </a>
+                            <a href="https://www.shazam.com/es-es/artist/violeta/1718315694" target="_blank">
+                                <img src="assets/shazam.ico" alt="Shazam">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Redes Sociales -->
+                <div class="redes-sociales">
+                 <!--   <h3>Redes Sociales</h3>-->
+                    <div class="fila-redes">
+                        <a href="https://www.instagram.com/violetahodar" target="_blank">
+                            <img src="assets/instagram.ico" alt="Instagram">
+                        </a>
+                        <a href="https://www.tiktok.com/@hodarvioleta" target="_blank">
+                            <img src="assets/tik-tok.ico" alt="TikTok">
+                        </a>
+                        <a href="https://violetaoficial.com" target="_blank">
+                            <img src="assets/twitter.ico" alt="Twitter">
+                        </a>
+                        <a href="https://whatsapp.com/channel/0029VajuudwBqbrGLRqDPw2P" target="_blank">
+                            <img src="assets/whatsapp.ico" alt="WhatsApp">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+    <script src="analytics.js"></script>
+</body>
+</html>
